@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="banner">
+            <h1>TIME <span>TRACK.</span></h1>
+            <button class="btn-banner" [routerLink]="['/timetracker']"><i class="fas fa-chevron-left" style="margin-right: 5px;"></i>Back to tracking</button>
+        </div>
+        <div class="rotate"></div>
+        <div class="out">
+            <div class="picture">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="info">
+                <p>Name: <span>{{ user.user.name }}</span></p>
+                <p>Email: <span>{{ user.user.email }}</span></p>
+            </div>
+        </div>
+    </div>
+</div>

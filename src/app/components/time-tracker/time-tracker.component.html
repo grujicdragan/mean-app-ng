@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="banner">
+            <h1>TIME <span>TRACK.</span></h1>
+            <button class="btn-banner" (click)="onLogout()">LOGOUT</button>
+            <button class="btn-banner prfl" [routerLink]="['/profile']">PROFILE</button>
+        </div>
+        <div class="rotate"></div>
+        <div class="main-out">
+            <div class="main">
+                <h1>Welcome,
+                    <a class="profile" [routerLink]="['/profile']"><span>{{ username.name }}</span></a>
+                </h1>
+                <p>Today is -<span class="weekday">&nbsp;{{ weekday }} &nbsp;</span>
+                    <span class="date">{{day + " " + month + ", " }} </span><span class="date" id="tre">{{t_str}}</span>
+                </p>
+                <h2 id="clock">
+                    {{c_str}}
+                </h2>
+                <div class="hms">
+                    <p class="hrs">HOURS</p>
+                    <p class="mins">MNUTES</p>
+                    <p class="secs">SECONDS</p>
+                </div>
+                <button (click)="onTimeCounter()" class="btnStartStop">{{ btnText }}</button>
+                <p class="clickText">Clicking <span class="clickText1">{{ btnText }}</span> will start the time counter.</p>
+                <a [routerLink]="['/reports']" class="reports">See your daily report</a>
+            </div>
+        </div>
+    </div>
+</div>

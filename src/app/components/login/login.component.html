@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="banner">
+            <h1>TIME <span>TRACK.</span></h1>
+        </div>
+        <div class="rotate"></div>
+        <div class="login-out">
+            <form (submit)="onLoginSubmit()" class="login">
+                <h1>SIGN IN</h1>
+                <div style="color: red; margin-bottom: 5px; margin-top: -15px; transition: ease 1s">{{ textError }}</div>
+                <div style="color: green; margin-bottom: 5px; margin-top: -15px; transition: ease 1s">{{ textSuccess }}</div>
+                <label for="email">Email:</label>
+                <input type="email" placeholder="Enter your email" [(ngModel)]="email" name="email">
+                <label for="password">Password:</label>
+                <input type="password" placeholder="Enter your password" [(ngModel)]="password" name="password">
+                <button type="submit">SIGN IN</button>
+                <p>Not a member?<a [routerLink]="['/register']">SIGN UP</a></p>
+            </form>
+        </div>
+    </div>
+</div>
