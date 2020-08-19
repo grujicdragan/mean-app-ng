@@ -20,7 +20,7 @@ export class RestService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post('https://mean-application.herokuapp.com/users/register', user, {
+    return this.http.post('http://localhost:3000/users/register', user, {
       headers: headers,
     });
   }
@@ -28,14 +28,14 @@ export class RestService {
   getProfile(): any {
     this.loadToken();
     let headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
-    return this.http.get('https://mean-application.herokuapp.com/users/profile', { headers: headers })
+    return this.http.get('http://localhost:3000/users/profile', { headers: headers })
   }
 
   authenticateUser(user) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
-    return this.http.post('https://mean-application.herokuapp.com/users/authenticate', user, {
+    return this.http.post('http://localhost:3000/users/authenticate', user, {
       headers: headers,
     });
   }
