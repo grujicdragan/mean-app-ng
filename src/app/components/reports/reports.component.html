@@ -1,1 +1,52 @@
-<p>reports works!</p>
+<div class="container">
+    <div class="wrapper">
+        <div class="banner">
+            <h1>TIME <span>TRACK.</span></h1>
+            <button class="btn-banner" [routerLink]="['/timetracker']"><i class="fas fa-chevron-left" style="margin-right: 5px;"></i>BACK</button>
+            <button class="btn-banner logout" (click)="onLogout()">LOGOUT</button>
+        </div>
+        <div class="rotate"></div>
+        <div class="main-out">
+            <div class="main">
+                <p><span class="weekday">&nbsp;{{ weekday }} &nbsp;</span>
+                    <span class="date">{{day + " " + month + ", " }} </span><span class="date" id="tre">{{t_str}}</span>
+                </p>
+                <h1>REPORTS</h1>
+                <table>
+                    <th>Time report for Tuesday, <span>25. September</span></th>
+                    <tr>
+                        <td>10:00 - 12:20</td>
+                        <td class="rght">02h 20m</td>
+                    </tr>
+                    <tr>
+                        <td>13:00 - 13:55</td>
+                        <td class="rght">55m</td>
+                    </tr>
+                    <tr>
+                        <td>14:10 - 16:34</td>
+                        <td class="rght">02h 24m</td>
+                    </tr>
+                    <th>Total:</th>
+                    <th class="rght">05h 39m</th>
+                </table>
+                <table>
+                    <th>Time report for Monday, <span>24. September</span></th>
+                    <tr>
+                        <td>10:00 - 12:20</td>
+                        <td class="rght">02h 20m</td>
+                    </tr>
+                    <tr>
+                        <td>13:00 - 13:55</td>
+                        <td class="rght">55m</td>
+                    </tr>
+                    <tr>
+                        <td>14:10 - 16:34</td>
+                        <td class="rght">02h 24m</td>
+                    </tr>
+                    <th>Total:</th>
+                    <th class="rght">05h 39m</th>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
