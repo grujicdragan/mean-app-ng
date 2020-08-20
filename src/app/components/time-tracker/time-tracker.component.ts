@@ -109,7 +109,6 @@ export class TimeTrackerComponent implements OnInit {
 
   onTimeCounter() {
     this.interval = !this.interval;
-    this.c_str;
 
     const x = document.getElementsByClassName('btnStartStop')[0];
     const y = document.getElementsByClassName('clickText1')[0];
