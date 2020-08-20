@@ -23,7 +23,7 @@
                     <p class="secs">SECONDS</p>
                 </div>
                 <button (click)="onTimeCounter()" class="btnStartStop">{{ btnText }}</button>
-                <p class="clickText">Clicking <span class="clickText1">{{ btnText }}</span> will start the time counter.</p>
+                <p class="clickText">Clicking <span class="clickText1">{{ btnText }}</span> will {{startStopText}} the time counter.</p>
                 <a [routerLink]="['/reports']" class="reports">See your daily report</a>
             </div>
         </div>

@@ -22,6 +22,7 @@ export class TimeTrackerComponent implements OnInit {
   clockMinutes = 0;
   clockHours = 0;
   btnText = 'CLOCK IN';
+  startStopText = 'start'
   interval = false;
   int = null;
   int1 = null;
@@ -49,7 +50,7 @@ export class TimeTrackerComponent implements OnInit {
     'December',
   ];
 
-  constructor(private service: RestService, private router: Router) {}
+  constructor(private service: RestService, private router: Router) { }
 
   ngOnInit(): void {
     this.int1 = setInterval(this.updateTime, 60000);
@@ -108,6 +109,7 @@ export class TimeTrackerComponent implements OnInit {
 
   onTimeCounter() {
     this.interval = !this.interval;
+    this.c_str;
 
     const x = document.getElementsByClassName('btnStartStop')[0];
     const y = document.getElementsByClassName('clickText1')[0];
@@ -117,6 +119,7 @@ export class TimeTrackerComponent implements OnInit {
 
     if (this.interval) {
       this.btnText = 'CLOCK OUT';
+      this.startStopText = 'stop'
       this.interval = false;
       this.int = setInterval(() => {
         this.TimeCounter();
@@ -124,6 +127,7 @@ export class TimeTrackerComponent implements OnInit {
       return (this.interval = !this.interval);
     } else {
       this.btnText = 'CLOCK IN';
+      this.startStopText = 'start'
       clearInterval(this.int);
     }
   }

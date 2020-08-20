@@ -26,9 +26,9 @@ export class RegisterComponent implements OnInit {
     private service: RestService,
     private http: HttpClient,
     private router: Router
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onRegisterSubmit() {
     const user = {
@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
     }
 
     if (!this.validationService.validateEmail(user.email)) {
-      this.messageTextError = 'Please enter a valid email!';
+      this.messageTextError = 'Please enter a valid email format!';
       return false;
     }
 
@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
         this.res = data;
       },
       (err) => {
-        this.messageTextError = 'Whoops, something went wrong.';
+        this.messageTextError = 'err';
       },
       () => {
         this.messageTextError = '';
