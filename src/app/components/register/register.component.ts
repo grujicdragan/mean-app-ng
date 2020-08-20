@@ -49,6 +49,7 @@ export class RegisterComponent implements OnInit {
 
     this.service.registerUser(user).subscribe(
       (data) => {
+        this.messageText = 'Loading, please wait.';
         this.res = data;
       },
       (err) => {

@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private service: RestService,
     private validationService: ValidationService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onLoginSubmit() {
     const user = {
@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 
     this.service.authenticateUser(user).subscribe(
       (data) => {
+        this.textSuccess = 'Loading, please wait.';
         this.res = data;
       },
       (err) => {
