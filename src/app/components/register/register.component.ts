@@ -71,7 +71,7 @@ export class RegisterComponent implements OnInit {
           this.service.storeUserData(this.res.token, this.res.user);
           setTimeout(() => {
             if (this.res.success) {
-              this.router.navigate(['/timetracker']);
+              this.router.navigate(['/']);
             }
           }, 2000);
         }
