@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   onLoginSubmit() {
-    this.textLoading = 'Loading, please wait.';
+    this.textLoading = 'Loading, please wait...';
     this.textError = '';
     const user = {
       email: this.email,

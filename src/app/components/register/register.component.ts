@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
 
   onRegisterSubmit() {
     this.messageTextError = '';
-    this.textLoading = 'Loading, please wait.';
+    this.textLoading = 'Loading, please wait...';
     const user = {
       name: this.name,
       email: this.email,
