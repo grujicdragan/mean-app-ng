@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   password: String;
   textError = '';
   textSuccess = '';
+  textLoading = '';
   res: any;
 
   constructor(
@@ -24,29 +25,34 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { }
 
   onLoginSubmit() {
+    this.textLoading = 'Loading, please wait.';
+    this.textError = '';
     const user = {
       email: this.email,
       password: this.password,
     };
 
     if (!this.validationService.validateLogin(user)) {
+      this.textLoading = '';
       this.textError = 'Please fill all fields!';
       return false;
     }
 
     this.service.authenticateUser(user).subscribe(
       (data) => {
-        this.textSuccess = 'Loading, please wait.';
         this.res = data;
       },
       (err) => {
+        this.textLoading = '';
         this.textError = err;
       },
       () => {
         if (!this.res.success) {
+          this.textLoading = '';
           this.textError = this.res.msg;
         } else {
           this.textError = '';
+          this.textLoading = '';
           this.textSuccess = this.res.msg;
           this.service.storeUserData(this.res.token, this.res.user);
           setTimeout(() => {

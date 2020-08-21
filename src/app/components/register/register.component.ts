@@ -19,7 +19,8 @@ export class RegisterComponent implements OnInit {
   password: String;
   messageText = '';
   messageTextError = '';
-  @Output() res: any;
+  textLoading = '';
+  res: any;
 
   constructor(
     private validationService: ValidationService,
@@ -31,6 +32,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void { }
 
   onRegisterSubmit() {
+    this.messageTextError = '';
+    this.textLoading = 'Loading, please wait.';
     const user = {
       name: this.name,
       email: this.email,
@@ -38,29 +41,40 @@ export class RegisterComponent implements OnInit {
     };
 
     if (!this.validationService.validateRegister(user)) {
+      this.textLoading = '';
       this.messageTextError = 'Please fill all fields!';
       return false;
     }
 
     if (!this.validationService.validateEmail(user.email)) {
+      this.textLoading = '';
       this.messageTextError = 'Please enter a valid email format!';
       return false;
     }
 
     this.service.registerUser(user).subscribe(
       (data) => {
-        this.messageText = 'Loading, please wait.';
         this.res = data;
       },
       (err) => {
-        this.messageTextError = 'err';
+        this.textLoading = '';
+        this.messageTextError = err;
       },
       () => {
-        this.messageTextError = '';
-        this.messageText = 'You are now registered and can log in.';
-        setTimeout(() => {
-          this.router.navigate(['/']);
-        }, 2000);
+        if (!this.res.success) {
+          this.textLoading = '';
+          this.messageTextError = this.res.msg;
+        } else {
+          this.messageTextError = '';
+          this.textLoading = '';
+          this.messageText = this.res.msg;
+          this.service.storeUserData(this.res.token, this.res.user);
+          setTimeout(() => {
+            if (this.res.success) {
+              this.router.navigate(['/timetracker']);
+            }
+          }, 2000);
+        }
       }
     );
   }
