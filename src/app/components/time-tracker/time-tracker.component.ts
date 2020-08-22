@@ -16,8 +16,8 @@ export class TimeTrackerComponent implements OnInit {
   weekday: string;
   month: string;
   username: any;
-  t_str = this.hours + ':' + this.minutes;
-  c_str = '00:00:00';
+  tStr = this.hours + ':' + this.minutes;
+  cStr = '00:00:00';
   clockSeconds = 0;
   clockMinutes = 0;
   clockHours = 0;
@@ -57,6 +57,23 @@ export class TimeTrackerComponent implements OnInit {
     this.getWeekDay();
     this.getMonth();
     this.getName();
+    // this.service.setIdentifyFromStorage();
+    // this.service.getTime().subscribe(
+    //   (data) => {
+    //     this.res = data;
+    //   },
+    //   (err) => console.log(err),
+    //   () => {
+    //     if (this.res) {
+    //       const lastStartedTime = new Date(this.res.start);
+    //       this.clockSeconds = lastStartedTime.getSeconds();
+    //       this.clockMinutes = lastStartedTime.getMinutes();
+    //       this.clockHours = lastStartedTime.getHours();
+    //       this.TimeCounter();
+    //       this.onTimeCounter(false);
+    //     }
+    //   }
+    // );
   }
 
   onLogout() {
@@ -103,11 +120,11 @@ export class TimeTrackerComponent implements OnInit {
       displayHours = this.clockHours.toString();
     }
 
-    this.c_str = displayHours + ':' + displayMinutes + ':' + displaySeconds;
-    document.getElementById('clock').innerHTML = this.c_str;
+    this.cStr = displayHours + ':' + displayMinutes + ':' + displaySeconds;
+    document.getElementById('clock').innerHTML = this.cStr;
   }
 
-  onTimeCounter() {
+  onTimeCounter(callApi = true) {
     this.interval = !this.interval;
 
     const x = document.getElementsByClassName('btnStartStop')[0];
@@ -148,11 +165,80 @@ export class TimeTrackerComponent implements OnInit {
     } else {
       this.minutes = minutes.toString();
     }
-    this.t_str = hours.toString() + ':' + this.minutes.toString() + ' ';
-    document.getElementById('tre').innerHTML = this.t_str;
+    if (hours < 10) {
+      this.hours = '0' + hours;
+    } else {
+      this.hours = hours.toString();
+    }
+    this.tStr = this.hours.toString() + ':' + this.minutes.toString() + ' ';
+    document.getElementById('tre').innerHTML = this.tStr;
   }
 
   ngOnDestroy(): void {
     clearInterval(this.int1);
   }
+
+  // onTimeCounter(callApi = true) {
+  //   this.interval = !this.interval;
+
+  //   const x = document.getElementsByClassName('btnStartStop')[0];
+  //   const y = document.getElementsByClassName('clickText1')[0];
+
+  //   x.classList.toggle('active');
+  //   y.classList.toggle('active');
+
+  //   if (this.interval) {
+  //     if (callApi) {
+  //       this.service.startClocking().subscribe(
+  //         (data) => {
+  //           this.res = data;
+  //         },
+  //         (err) => console.log(err),
+  //         () => {
+  //           if (!this.res.success) {
+  //             console.log(this.res.msg);
+  //           } else {
+  //             this.clockOut();
+  //           }
+  //         }
+  //       );
+  //     } else {
+  //       this.clockOut();
+  //     }
+  //   } else {
+  //     if (callApi) {
+  //       this.service.stopClocking().subscribe(
+  //         (data) => {
+  //           this.res = data;
+  //         },
+  //         (err) => console.log(err),
+  //         () => {
+  //           if (!this.res.success) {
+  //             console.log(this.res.msg);
+  //           } else {
+  //             this.clockIn();
+  //           }
+  //         }
+  //       );
+  //     } else {
+  //       this.clockIn();
+  //     }
+  //   }
+  // }
+
+  // clockOut() {
+  //   this.btnText = 'CLOCK OUT';
+  //   this.startStopText = 'stop';
+  //   this.interval = false;
+  //   this.int = setInterval(() => {
+  //     this.TimeCounter();
+  //   }, 1000);
+  //   this.interval = !this.interval;
+  // }
+
+  // clockIn() {
+  //   this.btnText = 'CLOCK IN';
+  //   this.startStopText = 'start';
+  //   clearInterval(this.int);
+  // }
 }

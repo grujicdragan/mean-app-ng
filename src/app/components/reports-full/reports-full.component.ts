@@ -3,11 +3,11 @@ import { RestService } from 'src/app/services/rest.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-reports',
-  templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.sass']
+  selector: 'app-reports-full',
+  templateUrl: './reports-full.component.html',
+  styleUrls: ['./reports-full.component.sass']
 })
-export class ReportsComponent implements OnInit {
+export class ReportsComponentFull implements OnInit {
   date = new Date();
   day = this.date.getDate().toString();
   hours = this.date.getHours().toString();

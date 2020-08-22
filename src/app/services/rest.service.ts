@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
   HttpClient,
-  HttpHeaders,
-  HttpErrorResponse,
+  HttpHeaders
 } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +13,7 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-  registerUser(user) {
+  registerUser(user: any) {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
@@ -31,7 +28,7 @@ export class RestService {
     return this.http.get('https://mean-application.herokuapp.com/users/profile', { headers: headers })
   }
 
-  authenticateUser(user) {
+  authenticateUser(user: any) {
     const headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
 
@@ -40,7 +37,7 @@ export class RestService {
     });
   }
 
-  storeUserData(token, user) {
+  storeUserData(token: any, user: any) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
@@ -57,4 +54,40 @@ export class RestService {
     this.user = null;
     localStorage.clear();
   }
+
+  // setIdentifyFromStorage() {
+  //   const token = localStorage.getItem('id_token');
+  //   const user = localStorage.getItem('user');
+  //   if (!token || !user) {
+  //     localStorage.removeItem('id_token');
+  //     localStorage.removeItem('user');
+  //     return location.href = '/login';
+  //   }
+  //   this.authToken = token;
+  //   this.user = JSON.parse(user);
+  // }
+
+  // getReports() {
+  //   this.loadToken();
+  //   const headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+  //   return this.http.get('http://localhost:3000/times/all', { headers });
+  // }
+
+  // getTime() {
+  //   this.loadToken();
+  //   const headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+  //   return this.http.get('http://localhost:3000/times/lastTime', { headers });
+  // }
+
+  // startClocking() {
+  //   this.loadToken();
+  //   const headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+  //   return this.http.post('http://localhost:3000/times/start', {}, { headers });
+  // }
+
+  // stopClocking() {
+  //   this.loadToken();
+  //   const headers = new HttpHeaders().append('Authorization', this.authToken).append('Content-Type', 'application/json');
+  //   return this.http.put('http://localhost:3000/times/stop', {}, { headers });
+  // }
 }

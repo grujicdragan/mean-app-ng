@@ -5,11 +5,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { TimeTrackerComponent } from './components/time-tracker/time-tracker.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ReportsComponentFull } from './components/reports-full/reports-full.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'reports', component: ReportsComponent },
+  { path: 'reports-full', component: ReportsComponentFull },
   { path: 'timetracker', component: TimeTrackerComponent },
   { path: 'profile', component: ProfileComponent },
   { path: '**', component: LoginComponent },
@@ -20,4 +22,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
