@@ -124,7 +124,7 @@ export class TimeTrackerComponent implements OnInit {
     document.getElementById('clock').innerHTML = this.cStr;
   }
 
-  onTimeCounter(callApi = true) {
+  onTimeCounter() {
     this.interval = !this.interval;
 
     const x = document.getElementsByClassName('btnStartStop')[0];
